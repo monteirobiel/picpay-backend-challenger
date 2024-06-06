@@ -12,13 +12,25 @@ public class Wallet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false, unique = true)
+    @Column(name = "cpf_cnpj", nullable = false, unique = true)
     private String cpfCnpj;
+
+
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
+    @Column (name = "full_name")
     private String fullName;
+
+    @Column (name = "password")
     private String password;
-    private BigDecimal balance;
+
+    @Column (name = "balance")
+    private BigDecimal balance = BigDecimal.ZERO;
+
+    @ManyToOne
+    @JoinColumn(name = "wallet_type_id")
+    private WalletType walletType;
 
 
     public Wallet() {}
